@@ -2,15 +2,12 @@
 
 class RGB(object):
 
-    def __init__(self,r=None,g=None,b=None):
-
-        self._white_balance = [1,1,1]
-        self._intensity = 1
+    def __init__(self,config,r=None,g=None,b=None):
+        self.config=config
+        self._white_balance = self.config.get("white_balance",[1,1,1])
+        self._intensity = self.config.get("intensity",1)
+        self._led_pins = self.config.get("led_pins",{"r":22,"g":27,"b":17})
         self._color = [0,0,0]
-        if ( (r is not None) and (g is not None) and (b is not None) ):
-            self.r_led = r
-            self.g_led = g
-            self.b_led = b
 
     def set(self):
         r=self.color[0] * self.white_balance[0] * self.intensity
@@ -18,9 +15,9 @@ class RGB(object):
         b=self.color[2] * self.white_balance[2] * self.intensity 
 
         pwm = open('/dev/pi-blaster', 'w')
-        pwm.write(str(self.r_led)+"="+str(r)+" ")
-        pwm.write(str(self.g_led)+"="+str(g)+" ")
-        pwm.write(str(self.b_led)+"="+str(b)+"\n")
+        pwm.write(str(self.led_pins["r"])+"="+str(r)+" ")
+        pwm.write(str(self.led_pins["g"])+"="+str(g)+" ")
+        pwm.write(str(self.led_pins["b"])+"="+str(b)+"\n")
         pwm.close()
 
     @property

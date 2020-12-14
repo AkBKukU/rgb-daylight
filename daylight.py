@@ -9,13 +9,13 @@ import pytz
 
 class Daylight(object):
 
-    def __init__(self,rgb):
+    def __init__(self,config,rgb):
+        self.config=config
         self.lights = rgb
-        self._position = [0,0,0]
+        self._position = self.config.get("position",{"timezone":"America/Phoenix","latitude":33.434061,"longitude":-112.016303})
         self._sun = None
-        self.timezone_hours=0
-        self._tz = None
-        self.colors={
+        self.timezone_hours=self.config.get("timezone_offset", 0)
+        self.colors_default={
                 "night-end": [0,0,0.05],
                 "dawn": [0.1,0.1,0.3],
                 "sunrise": [0.4,0.4,0.4],
@@ -24,6 +24,7 @@ class Daylight(object):
                 "dusk": [0.3,0.1,0.4],
                 "night-start": [0,0,0.05]
                 }
+        self.colors = self.config.get("colors",self.colors_default)
         self.times=['night-start',"dusk","sunset","noon","sunrise","dawn",'night-end']
 
 
@@ -81,21 +82,12 @@ class Daylight(object):
         return s
 
     @property
-    def tz(self):
-        return self._tz
-
-    @tz.setter
-    def tz(self, value):
-        self._tz = value
-        self.observer = Observer(self.position[0],self.position[1],self.position[2])
-
-    @property
     def position(self):
         return self._position
 
     @position.setter
     def position(self, value):
         self._postion = value
-        city = LocationInfo(value[0],value[1],value[2],value[3],value[4])
+        city = LocationInfo("","",value["timezone"],value["latitude"],value["longitude"])
         self.observer = city.observer
 
