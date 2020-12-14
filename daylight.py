@@ -12,7 +12,8 @@ class Daylight(object):
     def __init__(self,config,rgb):
         self.config=config
         self.lights = rgb
-        self._position = self.config.get("position",{"timezone":"America/Phoenix","latitude":33.434061,"longitude":-112.016303})
+        self._position = None
+        self.position = self.config.get("position",{"timezone":"America/Phoenix","latitude":33.434061,"longitude":-112.016303})
         self._sun = None
         self.timezone_hours=self.config.get("timezone_offset", 0)
         self.colors_default={

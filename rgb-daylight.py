@@ -14,6 +14,6 @@ day = Daylight(config,lights)
 
 # Update Daylight Controller
 while True:
-    #day.update()
+    day.update()
     sleep(30)
 

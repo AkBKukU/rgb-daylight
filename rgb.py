@@ -6,7 +6,7 @@ class RGB(object):
         self.config=config
         self._white_balance = self.config.get("white_balance",[1,1,1])
         self._intensity = self.config.get("intensity",1)
-        self._led_pins = self.config.get("led_pins",{"r":22,"g":27,"b":17})
+        self.led_pins = self.config.get("led_pins",{"r":22,"g":27,"b":17})
         self._color = [0,0,0]
 
     def set(self):
