@@ -27,6 +27,8 @@ class Daylight(object):
                 }
         self.colors = self.config.get("colors",self.colors_default)
         self.times=['night-start',"dusk","sunset","noon","sunrise","dawn",'night-end']
+        self.start=pytz.UTC.localize(self.tz_fix(datetime.now()))
+        self.test=False
 
 
     def update(self):
@@ -61,8 +63,12 @@ class Daylight(object):
 
 
     def now(self):
-        # Return timezone corrected now
-        return pytz.UTC.localize(self.tz_fix(datetime.now()))
+        if self.test:
+            self.start += timedelta(minutes=0.25)
+            return self.start
+        else:
+            # Return timezone corrected now
+            return pytz.UTC.localize(self.tz_fix(datetime.now()))
 
 
     def tz_fix(self,utc_time):
