@@ -30,6 +30,8 @@ class Daylight(object):
         self.start=pytz.UTC.localize(self.tz_fix(datetime.now()))
         self.test=False
 
+    def set_color(self, color):
+        self.lights.color = self.colors[color]
 
     def update(self):
         print("Time: " +str(self.now()))
