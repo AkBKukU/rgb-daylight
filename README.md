@@ -28,6 +28,19 @@ the following dependancies
 or just reboot*
 
 Once everything is installed you can just download these files and run them:
+ 
+     git clone https://github.com/AkBKukU/rgb-daylight
+     cd rgb-daylight
+     ./rgb-daylight
+
+After that you can quit it with `ctrl+c` and then go through the [Setup](#setup) steps
+to configure it for your use.
+
+If you have your pi auto login and want the program to run on boot, add the following
+lines to the `/home/pi/.bashrc` file:
+
+     cd rgb-daylight
+     ./rgb-daylight
 
 
 ## Build
