@@ -28,7 +28,7 @@ class Config(object):
 
 
     def load(self, file_path=None):
-        """Read data from JSON file and create file if non existant"""
+        """Read data from JSON file and create file if non existent"""
         if file_path is None:
             file_path = self.json_path
 
@@ -47,7 +47,7 @@ class Config(object):
 
 
     def get(self,key, default):
-        """Request a given setting and create it with default if non-existant"""
+        """Request a given setting and create it with default if non-existent"""
         if key in self.data:
             return self.data[key]
         else:
