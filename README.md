@@ -36,12 +36,19 @@ Once everything is installed you can just download these files and run them:
 After that you can quit it with `ctrl+c` and then go through the [Setup](#setup) steps
 to configure it for your use.
 
+### Installation Method 1
 If you have your pi auto login and want the program to run on boot, add the following
 lines to the `/home/pi/.bashrc` file:
 
      cd rgb-daylight
      ./rgb-daylight
 
+### Installation Method 2
+If you prefer to create a service instead, move `rgb-daylight.service` to `/lib/systemd/system` and run the following:
+`sudo systemctl daemon-reload`
+`sudo systemctl enable rgb-daylight.service`
+`sudo systemctl start rgb-daylight.service`
+*By default, the unit file assumines you cloned the repo to `/home/pi/`, if necessary, change the location in the unit file to the path you've cloned the repo to.*
 
 ## Build
 
