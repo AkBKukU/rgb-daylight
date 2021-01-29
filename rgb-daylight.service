@@ -1,0 +1,11 @@
+[Unit]
+Description=RGB Daylight Simulation Service
+After=NetworkManager-wait-online.service
+
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/rgb-daylight/rgb-daylight.py
+WorkingDirectory=/home/pi/rgb-daylight/
+TimeoutSec=20
+
+[Install]
+WantedBy=multi-user.target
